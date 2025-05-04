@@ -1,0 +1,45 @@
+---
+const { price, disponibility, payment, duration } = Astro.props;
+import Calendar from "../icons/Calendar.astro";
+import Dolar from "../icons/Dolar.astro";
+import ExternalButton from "../common/ExternalButton.astro";
+import ArrowRight from "../icons/ArrowRight.astro";
+---
+
+<article
+  class="py-10 lg:px-30 px-10 flex flex-col gap-8 items-center rounded-xl bg-white border-2 border-moody-blue-100 hover:border-moody-blue-500"
+>
+  <header>
+    <h2 class="text-4xl font-bold text-moody-blue-700 text-center">
+      ${price}
+    </h2>
+  </header>
+  <div class="flex flex-col gap-4">
+    <p class="flex gap-2 items-center justify-center">
+      <span class="text-moody-blue-700">
+        <Calendar />
+      </span>
+      {disponibility}
+    </p>
+
+    <p class="flex gap-2 items-center justify-center">
+      <span class="text-moody-blue-700">
+        <Dolar />
+      </span>
+      {payment}
+    </p>
+  </div>
+  <footer class="flex flex-col justify-center items-center gap-4">
+    <ExternalButton
+      href="https://centroinclusionsana.site.agendapro.com/cl/sucursal/340116/profesional/569175"
+      text="Agendar consulta"
+      icon={ArrowRight}
+    />
+    <p class="text-sm text-gray-800">
+      *La duración de cada sesión es de <span
+        class="text-moody-blue-500 font-semibold"
+        >{duration} minutos
+      </span>
+    </p>
+  </footer>
+</article>

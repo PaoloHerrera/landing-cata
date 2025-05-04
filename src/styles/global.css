@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-moody-blue-50: #eef0ff;
+  --color-moody-blue-100: #dfe3ff;
+  --color-moody-blue-200: #c5c9ff;
+  --color-moody-blue-300: #a3a6fe;
+  --color-moody-blue-400: #7a75fb;
+  --color-moody-blue-500: #6f5ff5;
+  --color-moody-blue-600: #6142e9;
+  --color-moody-blue-700: #5434ce;
+  --color-moody-blue-800: #442da6;
+  --color-moody-blue-900: #3a2c83;
+  --color-moody-blue-950: #231a4c;
+}
+
+html {
+  font-family: "Quicksand", "Montserrat", sans-serif;
+  scroll-padding-top: 5rem;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--color-moody-blue-500) var(--color-moody-blue-50);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
