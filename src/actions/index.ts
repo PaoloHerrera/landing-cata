@@ -13,7 +13,7 @@ export const server = {
 
 			const { data, error } = await resend.emails.send({
 				from: 'Catalina Terapeuta <onboarding@resend.dev>',
-				to: ['paolo.herrera.araya@gmail.com'],
+				to: ['catalina.herrera.to@gmail.com'],
 				subject: `Tienes un nuevo mensaje de ${nombre}`,
 				html: `<p>De: ${nombre} (${email})</p>
         <p><strong>${mensaje}</p></strong>`,
