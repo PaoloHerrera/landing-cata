@@ -35,6 +35,9 @@ import X from "./icons/X.astro";
 				class="cursor-pointer flex lg:hidden hover:rounded-full hover:bg-moody-blue-100 p-2"
 				type="button"
 				id="open-menu"
+				aria-label="Abrir menu"
+				aria-controls="menu"
+				aria-expanded="false"
 			>
 				<Menu />
 			</button>
@@ -43,6 +46,8 @@ import X from "./icons/X.astro";
 				type="button"
 				id="close-menu"
 				class="hidden z-20 cursor-pointer hover:rounded-full hover:bg-moody-blue-100 p-2"
+				aria-label="Cerrar menu"
+				aria-controls="menu"
 			>
 				<X />
 			</button>
@@ -50,6 +55,8 @@ import X from "./icons/X.astro";
 			<div
 				class="hidden bg-white absolute top-0 right-0 w-full h-screen z-10 flex-col pr-10 gap-10"
 				id="menu"
+				aria-hidden="true"
+				aria-labelledby="open-menu"
 			>
 				<ul
 					class="flex flex-col items-end gap-10 text-black font-semibold pt-20 px-4 md:px-8"
