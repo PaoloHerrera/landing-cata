@@ -18,7 +18,7 @@
 }
 
 html {
-  font-family: "Quicksand", "Montserrat", sans-serif;
+  font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   scroll-padding-top: 5rem;
   scroll-behavior: smooth;
   scrollbar-color: var(--color-moody-blue-500) var(--color-moody-blue-50);
