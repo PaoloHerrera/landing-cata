@@ -57,7 +57,12 @@ import CatalinaImage from "../../public/images/Catalina.webp";
         src={CatalinaImage}
         alt="Foto de Catalina Herrera sonriendo"
         class="rounded-full lg:w-96 object-cover w-64"
-        quality={80}
+        quality={70}
+        loading={"eager"}
+        widths={[320, 640, 960]}
+        sizes="(max-width: 640px) 320px, (max-width: 1024px) 640px, 960px"
+        width={960}
+        height={960}
       />
     </div>
   </div>
