@@ -2,6 +2,9 @@
 import ExternalButton from "./common/ExternalButton.astro";
 import WhatsappButton from "./common/WhatsappButton.astro";
 import ArrowRight from "./icons/ArrowRight.astro";
+import { Picture } from "astro:assets";
+
+import CatalinaImage from "../../public/images/Catalina.webp";
 ---
 
 <section
@@ -50,10 +53,11 @@ import ArrowRight from "./icons/ArrowRight.astro";
     </div>
 
     <div class="flex-1 flex justify-end fade-in">
-      <img
-        src="/images/Catalina.webp"
+      <Picture
+        src={CatalinaImage}
         alt="Foto de Catalina Herrera sonriendo"
         class="rounded-full lg:w-96 object-cover w-64"
+        quality={80}
       />
     </div>
   </div>
