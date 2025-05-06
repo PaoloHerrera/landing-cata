@@ -1,5 +1,7 @@
 ---
 const year = new Date().getFullYear();
+import { Picture } from "astro:assets";
+import Logo from "../../public/logo.webp";
 ---
 
 <footer class="bg-moody-blue-950">
@@ -8,7 +10,7 @@ const year = new Date().getFullYear();
   >
     <div class="flex flex-col gap-4">
       <div class="flex gap-2 items-center justify-center">
-        <img src="/logo.webp" alt="Logo de Catalina" width="30" height="auto" />
+        <Picture src={Logo} alt="Logo de Catalina" width="30" />
         <span class="text-lg font-bold text-white">Catalina Herrera</span>
       </div>
       <div class="flex flex-col items-center justify-center">
