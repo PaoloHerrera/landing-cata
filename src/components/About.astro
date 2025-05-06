@@ -1,3 +1,7 @@
+---
+import { AboutCollapsible } from "./AboutCollapsible.tsx";
+---
+
 <section
   class="bg-moody-blue-300 flex flex-col items-center justify-center h-full relative"
   id="sobre-mi"
@@ -56,26 +60,7 @@
           >, y un muy grande etcétera.
         </p>
 
-        <p class="text-gray-800 text-lg">
-          Mis métodos de intervención se basan principalmente en el <span
-            class="font-semibold text-moody-blue-700">juego</span
-          >, donde potencio las habilidades del infante/joven con actividades
-          <span class="font-semibold text-moody-blue-700"
-            >lúdicas y entretenidas</span
-          >, fomentando tanto su motivación como el trabajo guiado.
-        </p>
-
-        <p class="text-gray-800 text-lg">
-          En resumen, ayudo a cada niño con diversas dificultades a que se
-          desenvuelva lo mejor posible en su vida diaria, siempre velando por su
-          bienestar y apoyando no solo a la persona a tratar, sino que también a
-          sus redes, ya sea familia, escuela, entre otros.
-        </p>
-
-        <p class="text-gray-800 text-lg">
-          Si estás buscando apoyo terapéutico, estaré muy feliz de ayudarte.
-          ¡Puedes escribirme para cualquier consulta!
-        </p>
+        <AboutCollapsible client:load />
       </div>
     </article>
   </div>
