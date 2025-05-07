@@ -4,7 +4,7 @@ import {
 	CollapsibleContent,
 } from './ui/collapsible.tsx'
 import { useState } from 'react'
-import { ChevronUp } from './icons/ChevronUp.tsx'
+import { ChevronUp } from 'lucide-react'
 
 export const AboutCollapsible = () => {
 	const [open, setOpen] = useState(false)

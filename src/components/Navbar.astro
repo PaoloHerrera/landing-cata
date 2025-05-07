@@ -1,8 +1,8 @@
 ---
-import Menu from "./icons/Menu.astro";
-import X from "./icons/X.astro";
 import { Picture } from "astro:assets";
 import Logo from "../../public/logo.webp";
+
+import MenuToggle from "./MenuToggle.astro";
 ---
 
 <header class="bg-white fixed top-0 z-50 w-full">
@@ -41,56 +41,7 @@ import Logo from "../../public/logo.webp";
 				</li>
 			</ul>
 
-			<button
-				class="cursor-pointer flex lg:hidden hover:rounded-full hover:bg-moody-blue-100 p-2"
-				type="button"
-				id="open-menu"
-				aria-label="Abrir menu"
-				aria-controls="menu"
-				aria-expanded="false"
-			>
-				<Menu />
-			</button>
-
-			<button
-				type="button"
-				id="close-menu"
-				class="hidden z-20 cursor-pointer hover:rounded-full hover:bg-moody-blue-100 p-2"
-				aria-label="Cerrar menu"
-				aria-controls="menu"
-			>
-				<X />
-			</button>
-
-			<div
-				class="hidden bg-white absolute top-0 right-0 w-full h-screen z-10 flex-col pr-10 gap-10"
-				id="menu"
-				aria-hidden="true"
-				aria-labelledby="open-menu"
-			>
-				<ul
-					class="flex flex-col items-end gap-10 text-black font-semibold pt-20 px-4 md:px-8"
-				>
-					<li class="navbar-item">
-						<a href="#">Home</a>
-					</li>
-					<li class="navbar-item">
-						<a href="#areas">Áreas</a>
-					</li>
-					<li class="navbar-item">
-						<a href="#sobre-mi">Sobre mí</a>
-					</li>
-					<li class="navbar-item">
-						<a href="#valor">Valor</a>
-					</li>
-					<li class="navbar-item">
-						<a href="#donde">Dónde</a>
-					</li>
-					<li class="navbar-item">
-						<a href="#contacto">Contacto</a>
-					</li>
-				</ul>
-			</div>
+			<MenuToggle />
 		</div>
 	</nav>
 </header>
@@ -103,57 +54,3 @@ import Logo from "../../public/logo.webp";
 		transform: scale(1.1);
 	}
 </style>
-
-<script>
-	const openMenu = () => {
-		const menu = document.getElementById("menu") as HTMLDivElement;
-		menu.classList.remove("hidden");
-		menu.classList.add("flex");
-
-		document.body.style.overflow = "hidden";
-
-		const closeMenuButton = document.getElementById(
-			"close-menu",
-		) as HTMLButtonElement;
-		closeMenuButton.classList.remove("hidden");
-
-		const openMenuButton = document.getElementById(
-			"open-menu",
-		) as HTMLButtonElement;
-		openMenuButton.classList.add("hidden");
-	};
-
-	const openMenuButton = document.getElementById(
-		"open-menu",
-	) as HTMLButtonElement;
-	openMenuButton.addEventListener("click", openMenu);
-
-	const closeMenu = () => {
-		const menu = document.getElementById("menu") as HTMLDivElement;
-		menu.classList.remove("flex");
-		menu.classList.add("hidden");
-
-		const openMenuButton = document.getElementById(
-			"open-menu",
-		) as HTMLButtonElement;
-		openMenuButton.classList.remove("hidden");
-
-		const closeMenuButton = document.getElementById(
-			"close-menu",
-		) as HTMLButtonElement;
-		closeMenuButton.classList.add("hidden");
-
-		document.body.style.overflow = "auto";
-	};
-
-	const closeMenuButton = document.getElementById(
-		"close-menu",
-	) as HTMLButtonElement;
-	closeMenuButton.addEventListener("click", closeMenu);
-
-	const navbarItems = document.getElementsByClassName("navbar-item");
-
-	for (let i = 0; i < navbarItems.length; i++) {
-		navbarItems[i].addEventListener("click", closeMenu);
-	}
-</script>

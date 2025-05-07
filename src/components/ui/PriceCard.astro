@@ -1,9 +1,7 @@
 ---
 const { price, disponibility, payment, duration } = Astro.props;
-import Calendar from "../icons/Calendar.astro";
-import Dolar from "../icons/Dolar.astro";
+import { CalendarDays, DollarSign, ArrowRight } from "lucide-react";
 import ExternalButton from "../common/ExternalButton.astro";
-import ArrowRight from "../icons/ArrowRight.astro";
 ---
 
 <article
@@ -17,14 +15,14 @@ import ArrowRight from "../icons/ArrowRight.astro";
   <div class="flex flex-col gap-4">
     <p class="flex gap-2 items-center justify-center">
       <span class="text-moody-blue-700">
-        <Calendar />
+        <CalendarDays />
       </span>
       {disponibility}
     </p>
 
     <p class="flex gap-2 items-center justify-center">
       <span class="text-moody-blue-700">
-        <Dolar />
+        <DollarSign />
       </span>
       {payment}
     </p>
