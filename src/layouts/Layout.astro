@@ -1,5 +1,6 @@
 ---
 import { Toaster } from "sonner";
+import SpeedInsights from "@vercel/speed-insights/astro";
 ---
 
 <!doctype html>
@@ -20,6 +21,7 @@ import { Toaster } from "sonner";
 	<body>
 		<slot />
 		<Toaster richColors position="bottom-right" client:load />
+		<SpeedInsights />
 	</body>
 </html>
 
