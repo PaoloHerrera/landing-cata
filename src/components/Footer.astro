@@ -10,7 +10,13 @@ import Logo from "../../public/logo.webp";
   >
     <div class="flex flex-col gap-4">
       <div class="flex gap-2 items-center justify-center">
-        <Picture src={Logo} alt="Logo de Catalina" width="45" />
+        <Picture
+          src={Logo}
+          alt="Logo de Catalina"
+          widths={[32, 36]}
+          sizes="(max-width: 640px) 32px, (max-width: 1024px) 36px"
+          width={36}
+        />
         <span class="text-lg font-bold text-white">Catalina Herrera</span>
       </div>
       <div class="flex flex-col items-center justify-center">

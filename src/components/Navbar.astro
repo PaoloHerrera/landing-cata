@@ -12,7 +12,9 @@ import Logo from "../../public/logo.webp";
 				<Picture
 					src={Logo}
 					alt="Logo de Catalina"
-					width="45"
+					widths={[32, 36]}
+					sizes="(max-width: 640px) 32px, (max-width: 1024px) 36px"
+					width={36}
 					loading={"eager"}
 				/>
 				<span class="text-moody-blue-400 text-xl font-bold">Catalina</span>
