@@ -1,5 +1,5 @@
 ---
-const { title, description, icon } = Astro.props;
+const { title, alt, description, icon } = Astro.props;
 import { Picture } from "astro:assets";
 ---
 
@@ -9,13 +9,7 @@ import { Picture } from "astro:assets";
   <div
     class="p-4 bg-moody-blue-100 rounded-full flex justify-center items-center"
   >
-    <Picture
-      src={icon}
-      alt={title}
-      class="w-16 h-16"
-      loading="lazy"
-      width={64}
-    />
+    <Picture src={icon} alt={alt} class="w-16 h-16" loading="lazy" width={64} />
   </div>
   <h2 class="text-xl font-bold text-moody-blue-700 text-center">
     {title}
