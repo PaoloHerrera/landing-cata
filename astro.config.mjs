@@ -17,7 +17,7 @@ export default defineConfig({
 
 	adapter: vercel({
 		webAnalytics: { enabled: true },
-		maxDuration: 31536000,
+		maxDuration: 60,
 	}),
 
 	integrations: [react(), sitemap()],
