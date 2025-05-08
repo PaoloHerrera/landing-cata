@@ -5,15 +5,15 @@ import ExternalButton from "../common/ExternalButton.astro";
 ---
 
 <article
-  class="py-10 lg:px-30 px-10 flex flex-col gap-8 items-center rounded-xl bg-white border-2 border-moody-blue-100 hover:border-moody-blue-500"
+  class="py-10 lg:px-30 px-10 flex flex-col items-center rounded-xl bg-white border-2 border-moody-blue-100 hover:border-moody-blue-500"
 >
   <header>
     <h2 class="text-4xl font-bold text-moody-blue-700 text-center">
       ${price}
     </h2>
   </header>
-  <div class="flex flex-col gap-4">
-    <p class="flex gap-2 items-center justify-center">
+  <div>
+    <p class="flex gap-2 items-center md:justify-center">
       <span class="text-moody-blue-700">
         <CalendarDays />
       </span>
@@ -27,7 +27,7 @@ import ExternalButton from "../common/ExternalButton.astro";
       {payment}
     </p>
   </div>
-  <footer class="flex flex-col justify-center items-center gap-4">
+  <footer class="flex flex-col md:justify-center items-center">
     <ExternalButton
       href="https://centroinclusionsana.site.agendapro.com/cl/sucursal/340116/profesional/569175"
       text="Agendar consulta"
