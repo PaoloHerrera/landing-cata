@@ -20,7 +20,7 @@ export default defineConfig({
 		maxDuration: 60,
 	}),
 
-	site: 'https://cataterapias.cl',
+	site: 'https://www.cataterapias.cl',
 
 	integrations: [react(), sitemap()],
 })
