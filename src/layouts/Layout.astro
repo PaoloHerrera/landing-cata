@@ -29,10 +29,7 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 		<link rel="sitemap" href="/sitemap-index.xml" />
 
 		<!-- Open Graph -->
-		<meta
-			property="og:site_name"
-			content="Catalina Herrera - Terapeuta Ocupacional"
-		/>
+		<meta property="og:site_name" content="Cataterapias" />
 		<meta
 			property="og:title"
 			content="Terapia Ocupacional para Niños y Adolescentes en Maipú"
@@ -86,6 +83,15 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 
 		<link rel="canonical" href="https://cataterapias.cl" />
 		<meta property="og:url" content="https://cataterapias.cl" />
+
+		<script is:inline type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "Cataterapias",
+				"url": "https://cataterapias.cl/"
+			}
+		</script>
 	</head>
 	<body>
 		<slot />
