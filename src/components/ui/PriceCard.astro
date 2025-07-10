@@ -1,9 +1,15 @@
 ---
-const { price, salePrice, disponibility, payment, duration } = Astro.props;
-import { CalendarDays, DollarSign, ArrowRight } from "lucide-react";
+const { price, salePrice, disponibility, hours, payment, duration } =
+  Astro.props;
+import {
+  CalendarDays,
+  DollarSign,
+  ArrowRight,
+  Clock10Icon,
+} from "lucide-react";
 import ExternalButton from "../common/ExternalButton.astro";
 
-const formattedToCLP = (value: number) => {
+const formattedToClp = (value: number) => {
   return new Intl.NumberFormat("es-CL", {
     style: "currency",
     currency: "CLP",
@@ -14,11 +20,11 @@ const formattedToCLP = (value: number) => {
     .trim();
 };
 
-const formattedPrice = formattedToCLP(price);
-const formattedSalePrice = formattedToCLP(salePrice);
+const formattedPrice = formattedToClp(price);
+const formattedSalePrice = formattedToClp(salePrice);
 
 const totalDiscount = price - salePrice;
-const formattedTotalDiscount = formattedToCLP(totalDiscount);
+const formattedTotalDiscount = formattedToClp(totalDiscount);
 ---
 
 <article
@@ -38,10 +44,10 @@ const formattedTotalDiscount = formattedToCLP(totalDiscount);
         <p class="text-white text-xs font-bold">DESCUENTO FONASA</p>
       </div>
       <p class="text-center">
-        <span class="text-gray-500 line-through text-lg font-bold mr-1"
+        <span class="text-gray-500 line-through text-lg font-bold"
           >{formattedPrice}</span
         >
-        <span class="text-center text-2xl font-extrabold text-green-700">
+        <span class="text-2xl font-extrabold text-green-700">
           {formattedSalePrice}
         </span>
       </p>
@@ -51,14 +57,21 @@ const formattedTotalDiscount = formattedToCLP(totalDiscount);
     </div>
   </header>
   <div>
-    <p class="flex gap-2 items-center md:justify-center">
+    <p class="flex gap-2 items-center md:justify-left">
       <span class="text-moody-blue-700">
         <CalendarDays />
       </span>
       {disponibility}
     </p>
 
-    <p class="flex gap-2 items-center justify-center">
+    <p class="flex gap-2 items-center md:justify-left">
+      <span class="text-moody-blue-700">
+        <Clock10Icon />
+      </span>
+      {hours}
+    </p>
+
+    <p class="flex gap-2 items-center justify-left">
       <span class="text-moody-blue-700">
         <DollarSign />
       </span>
