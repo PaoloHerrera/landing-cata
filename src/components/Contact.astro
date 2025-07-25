@@ -19,6 +19,7 @@ import WhatsappButton from "./common/WhatsappButton.astro";
 
     <div
       class="w-full max-w-xl p-10 rounded-xl bg-moody-blue-50 shadow-lg flex flex-col gap-10"
+      data-contact-form
     >
       <WhatsappButton
         href="https://api.whatsapp.com/send?phone=56992194020"
@@ -80,88 +81,128 @@ import WhatsappButton from "./common/WhatsappButton.astro";
 </section>
 
 <script>
-  import { actions } from "astro:actions";
-  import { toast } from "sonner";
+  // Lazy loading del JavaScript del formulario
+  const contactSection = document.querySelector("[data-contact-form]");
+  let scriptLoaded = false;
 
-  const EMAIL_REGEX = /^[a-zA-Z0-9._%±]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
-  const form = document.getElementById("contacto-form") as HTMLFormElement;
-  const submitter = document.querySelector(
-    "button[type='submit']",
-  ) as HTMLButtonElement;
+  // Función para cargar el script del formulario
+  async function loadContactScript() {
+    if (scriptLoaded) return;
+    scriptLoaded = true;
 
-  const nombreError = document.getElementById(
-    "nombre-error",
-  ) as HTMLSpanElement;
-  const emailError = document.getElementById("email-error") as HTMLSpanElement;
-  const mensajeError = document.getElementById(
-    "mensaje-error",
-  ) as HTMLSpanElement;
+    // Importación dinámica - solo se carga cuando es necesario
+    const { actions } = await import("astro:actions");
+    const { toast } = await import("sonner");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    const EMAIL_REGEX = /^[a-zA-Z0-9._%±]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
+    const form = document.getElementById("contacto-form") as HTMLFormElement;
+    const submitter = document.querySelector(
+      "button[type='submit']",
+    ) as HTMLButtonElement;
 
-    const nombre = form.nombre.value;
-    const email = form.email.value;
-    const mensaje = form.mensaje.value;
+    const nombreError = document.getElementById(
+      "nombre-error",
+    ) as HTMLSpanElement;
+    const emailError = document.getElementById(
+      "email-error",
+    ) as HTMLSpanElement;
+    const mensajeError = document.getElementById(
+      "mensaje-error",
+    ) as HTMLSpanElement;
 
-    if (nombre.length === 0) {
-      nombreError.classList.remove("hidden");
-      form.nombre.classList.add("border-red-500");
-    }
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    if (!EMAIL_REGEX.test(email)) {
-      emailError.classList.remove("hidden");
-      form.email.classList.add("border-red-500");
-    }
+      const nombre = form.nombre.value;
+      const email = form.email.value;
+      const mensaje = form.mensaje.value;
 
-    if (mensaje.length === 0) {
-      mensajeError.classList.remove("hidden");
-      form.mensaje.classList.add("border-red-500");
-    }
+      if (nombre.length === 0) {
+        nombreError.classList.remove("hidden");
+        form.nombre.classList.add("border-red-500");
+      }
 
-    if (
-      nombre.length === 0 ||
-      EMAIL_REGEX.test(email) === false ||
-      mensaje.length === 0
-    ) {
-      return;
-    }
+      if (!EMAIL_REGEX.test(email)) {
+        emailError.classList.remove("hidden");
+        form.email.classList.add("border-red-500");
+      }
 
-    submitter.disabled = true;
-    submitter.innerHTML = "Enviando...";
-    submitter.classList.add("opacity-70");
-    submitter.classList.add("pointer-events-none");
-    submitter.classList.add("select-none");
+      if (mensaje.length === 0) {
+        mensajeError.classList.remove("hidden");
+        form.mensaje.classList.add("border-red-500");
+      }
 
-    nombreError.classList.add("hidden");
-    emailError.classList.add("hidden");
-    mensajeError.classList.add("hidden");
-    form.nombre.classList.remove("border-red-500");
-    form.email.classList.remove("border-red-500");
-    form.mensaje.classList.remove("border-red-500");
+      if (
+        nombre.length === 0 ||
+        EMAIL_REGEX.test(email) === false ||
+        mensaje.length === 0
+      ) {
+        return;
+      }
 
-    const formData = new FormData();
+      submitter.disabled = true;
+      submitter.innerHTML = "Enviando...";
+      submitter.classList.add("opacity-70");
+      submitter.classList.add("pointer-events-none");
+      submitter.classList.add("select-none");
 
-    formData.append("nombre", nombre);
-    formData.append("email", email);
-    formData.append("mensaje", mensaje);
+      nombreError.classList.add("hidden");
+      emailError.classList.add("hidden");
+      mensajeError.classList.add("hidden");
+      form.nombre.classList.remove("border-red-500");
+      form.email.classList.remove("border-red-500");
+      form.mensaje.classList.remove("border-red-500");
 
-    try {
-      await actions.send(formData);
+      const formData = new FormData();
 
-      toast.success("Mensaje enviado exitosamente");
-      form.reset();
-    } catch (error) {
-      console.error(error);
-      toast.error(
-        "Ocurrió un error al enviar el mensaje. Por favor, inténtalo de nuevo.",
-      );
-    } finally {
-      submitter.disabled = false;
-      submitter.innerHTML = "Enviar";
-      submitter.classList.remove("opacity-70");
-      submitter.classList.remove("pointer-events-none");
-      submitter.classList.remove("select-none");
-    }
+      formData.append("nombre", nombre);
+      formData.append("email", email);
+      formData.append("mensaje", mensaje);
+
+      try {
+        await actions.send(formData);
+
+        toast.success("Mensaje enviado exitosamente");
+        form.reset();
+      } catch (error) {
+        console.error(error);
+        toast.error(
+          "Ocurrió un error al enviar el mensaje. Por favor, inténtalo de nuevo.",
+        );
+      } finally {
+        submitter.disabled = false;
+        submitter.innerHTML = "Enviar";
+        submitter.classList.remove("opacity-70");
+        submitter.classList.remove("pointer-events-none");
+        submitter.classList.remove("select-none");
+      }
+    });
+  }
+
+  // Intersection Observer para detectar cuando el componente es visible
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadContactScript();
+          observer.unobserve(entry.target); // Solo cargar una vez
+        }
+      });
+    },
+    {
+      rootMargin: "100px", // Cargar 100px antes de que sea visible
+    },
+  );
+
+  if (contactSection) {
+    observer.observe(contactSection);
+  }
+
+  // También cargar si el usuario hace focus en algún input (fallback)
+  const inputs = document.querySelectorAll(
+    "#contacto-form input, #contacto-form textarea",
+  );
+  inputs.forEach((input) => {
+    input.addEventListener("focus", loadContactScript, { once: true });
   });
 </script>
