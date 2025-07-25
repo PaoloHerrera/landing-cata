@@ -23,13 +23,13 @@ import Footer from "../components/Footer.astro";
 	<Main>
 		<Hero />
 
-		<Areas />
+		<Areas client:visible />
 
-		<About />
-		<Price />
-		<Where />
+		<About client:visible />
+		<Price client:visible />
+		<Where client:visible />
 
-		<Contact />
+		<Contact client:visible />
 	</Main>
-	<Footer />
+	<Footer client:visible />
 </Layout>
