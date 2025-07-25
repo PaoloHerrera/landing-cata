@@ -13,6 +13,10 @@ export default defineConfig({
 		plugins: [tailwindcss()],
 	},
 
+	build: {
+		inlineStylesheets: 'always',
+	},
+
 	output: 'server',
 
 	adapter: vercel({
