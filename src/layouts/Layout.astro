@@ -104,7 +104,7 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 	</head>
 	<body>
 		<slot />
-		<Toaster richColors position="bottom-right" client:load />
+		<Toaster richColors position="bottom-right" client:idle />
 		<SpeedInsights />
 	</body>
 </html>
